@@ -9,6 +9,17 @@
     android:layout_margin="16dp"
     tools:context=".LoginActivity">
 
+    <TextView
+        android:id="@+id/tvAppName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/pacifico"
+        android:text="InstaPic"
+        android:textAlignment="center"
+        android:textFontWeight="10"
+        android:textSize="40sp"
+        android:textStyle="bold|italic" />
+
     <EditText
         android:id="@+id/etUsername"
         android:layout_width="match_parent"
@@ -19,7 +30,7 @@
         android:layout_marginBottom="10dp"
         android:ems="10"
         android:hint="Username"
-        android:inputType="textPersonName" />
+        android:inputType="textPersonName"/>
 
     <EditText
         android:id="@+id/etPassword"
@@ -43,7 +54,11 @@
         android:layout_marginTop="5dp"
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="10dp"
-        android:text="Login" />
+        android:background="@color/blue"
+        android:padding="5dp"
+        android:text=" Log in"
+        style="?android:attr/borderlessButtonStyle"
+        android:textColor="@color/white" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -66,11 +81,16 @@
         <Button
             android:id="@+id/btnRegister"
             android:layout_width="0dp"
-            android:layout_weight="1"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_marginTop="5dp"
-            android:text="Register" />
+            android:layout_marginEnd="10dp"
+            android:layout_weight="1"
+            android:background="@color/green"
+            style="?android:attr/borderlessButtonStyle"
+            android:padding="5dp"
+            android:text="Register"
+            android:textColor="@color/white" />
 
     </LinearLayout>
 
