@@ -14,10 +14,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="@font/pacifico"
-        android:text="InstaPic"
+        android:text="@string/AppName"
         android:textAlignment="center"
         android:textFontWeight="10"
         android:textSize="40sp"
+        android:textColor="@color/black"
         android:textStyle="bold|italic" />
 
     <EditText
@@ -30,6 +31,8 @@
         android:layout_marginBottom="10dp"
         android:ems="10"
         android:hint="Username"
+        android:background="@drawable/round_border_et"
+        android:padding="10dp"
         android:inputType="textPersonName" />
 
     <EditText
@@ -43,6 +46,8 @@
         android:layout_marginBottom="10dp"
         android:ems="10"
         android:hint="Password"
+        android:background="@drawable/round_border_et"
+        android:padding="10dp"
         android:inputType="textPassword" />
 
 
@@ -56,6 +61,8 @@
         android:layout_marginBottom="10dp"
         android:ems="10"
         android:hint="Email ID"
+        android:background="@drawable/round_border_et"
+        android:padding="10dp"
         android:inputType="textEmailAddress" />
 
     <Button
@@ -67,12 +74,11 @@
         android:layout_marginTop="5dp"
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="10dp"
-        android:background="@color/blue"
+        android:background="@drawable/rounded_button"
         android:padding="5dp"
         android:text="Save"
         style="?android:attr/borderlessButtonStyle"
         android:textColor="@color/white" />
-
 
 
 </LinearLayout>
