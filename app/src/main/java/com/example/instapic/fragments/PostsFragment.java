@@ -14,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.instapic.EndlessRecyclerViewScrollListener;
 import com.example.instapic.Post;
 import com.example.instapic.PostsAdapter;
 import com.example.instapic.R;
@@ -31,6 +32,7 @@ public class PostsFragment extends Fragment {
     private RecyclerView rvPosts;
     protected PostsAdapter adapter;
     protected List<Post> allPosts;
+    private EndlessRecyclerViewScrollListener scrollListener;
 
     public PostsFragment() {
         // Required empty public constructor
@@ -61,15 +63,49 @@ public class PostsFragment extends Fragment {
         adapter = new PostsAdapter(getContext(), allPosts);
 
         rvPosts.setAdapter(adapter);
-        rvPosts.setLayoutManager(new LinearLayoutManager(getContext()));
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
+        rvPosts.setLayoutManager(linearLayoutManager);
 
-        // Steps to use recycler view
+        scrollListener = new EndlessRecyclerViewScrollListener(linearLayoutManager) {
+
+
+            @Override
+            public void onLoadMore(int page, int totalItemsCount, RecyclerView view) {
+                queryPostsUnlimited();
+            }
+        };
+
+        rvPosts.addOnScrollListener(scrollListener);
+
+            // Steps to use recycler view
         // 1. create layout for one row in the list
         // 2. create the adapter
         // 3. create the data source
         // 4. set the adapter on recycler view
         // 5. set the layout manager on the recycler view
         queryPosts();
+    }
+
+    private void queryPostsUnlimited() {
+        // Specify which class to query
+        ParseQuery<Post> query = ParseQuery.getQuery(Post.class);
+        query.include(Post.KEY_USER);
+        query.addDescendingOrder(Post.KEY_CREATED);
+        query.findInBackground(new FindCallback<Post>() {
+            @Override
+            public void done(List<Post> posts, ParseException e) {
+                if (e != null){
+                    Log.e(TAG, "Issue with getting posts", e);
+                    return;
+                }
+                for (Post post: posts){
+                    Log.i(TAG, "Post: " + post.getDescription() + ", username: " + post.getUser().getUsername());
+                }
+                adapter.clear();
+                adapter.addAll(posts);
+                swipeContainer.setRefreshing(false);
+            }
+        });
     }
 
     protected void queryPosts() {
@@ -85,7 +121,6 @@ public class PostsFragment extends Fragment {
                     Log.e(TAG, "Issue with getting posts", e);
                     return;
                 }
-
                 for (Post post: posts){
                     Log.i(TAG, "Post: " + post.getDescription() + ", username: " + post.getUser().getUsername());
                 }
