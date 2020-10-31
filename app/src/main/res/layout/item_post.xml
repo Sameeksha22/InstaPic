@@ -20,14 +20,44 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="TextView"
-        tools:text="Cat" />
+        android:visibility="gone"
+        tools:text="New York" />
 
     <ImageView
         android:id="@+id/ivImage"
         android:layout_width="match_parent"
         android:layout_height="300dp"
         android:scaleType="centerCrop"
-        tools:srcCompat="@tools:sample/avatars" />
+        tools:srcCompat="@tools:sample/avatars"
+        android:layout_marginBottom="5dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+
+        <ImageView
+            android:id="@+id/ivLike"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:src="@drawable/ufi_heart_icon" />
+
+        <ImageView
+            android:id="@+id/ivComment"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_marginLeft="8dp"
+            android:src="@drawable/ufi_comment" />
+
+        <ImageView
+                android:id="@+id/ivRepost"
+                android:layout_width="17dp"
+                android:layout_height="17dp"
+                android:layout_marginLeft="8dp"
+                android:src="@drawable/ufi_new_direct" />
+
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -53,5 +83,13 @@
             tools:text="An apple a day keeps a doctor away" />
 
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/tvDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="51 minutes ago"
+        android:textSize="10sp"
+        tools:text="51 minutes ag0" />
 
 </LinearLayout>

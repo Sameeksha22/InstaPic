@@ -5,7 +5,7 @@
 
     <item
         android:id="@+id/action_home"
-        android:icon="@mipmap/instagram_home_filled_24"
+        android:icon="@mipmap/instagram_home_outline_24"
         android:title="Home"
         app:showAsAction="always" />
     <item

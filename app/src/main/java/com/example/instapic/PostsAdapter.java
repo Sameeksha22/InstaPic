@@ -62,6 +62,7 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
         private TextView tvDescription;
         private TextView tvLocation;
         private TextView tvUserNameDescription;
+        private TextView tvDate;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -70,13 +71,20 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
             tvDescription = itemView.findViewById(R.id.tvDescription);
             tvLocation = itemView.findViewById(R.id.tvLocation);
             tvUserNameDescription = itemView.findViewById(R.id.tvUsernameDescription);
+            tvDate = itemView.findViewById(R.id.tvDate);
         }
 
         public void bind(Post post) {
             // Bind the post data to the view elements
+            tvLocation.setVisibility(View.GONE);
             tvDescription.setText(post.getDescription());
             tvUsername.setText(post.getUser().getUsername());
-            tvLocation.setText(post.getLocation());
+            tvDate.setText(post.getDate(post));
+            String location = post.getLocation();
+            if (!location.isEmpty()){
+                tvLocation.setVisibility(View.VISIBLE);
+            }
+            tvLocation.setText(location);
             tvUserNameDescription.setText((post.getUser().getUsername()));
             ParseFile image = post.getImage();
             if (image != null){

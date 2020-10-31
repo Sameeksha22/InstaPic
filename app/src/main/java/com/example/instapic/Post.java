@@ -7,6 +7,9 @@ import com.parse.ParseFile;
 import com.parse.ParseObject;
 import com.parse.ParseUser;
 
+import java.sql.Time;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @ParseClassName("Post")
@@ -50,4 +53,9 @@ public class Post extends ParseObject {
         put(KEY_LOCATION, location);
     }
 
+    public String getDate(Post post){
+        Date date = post.getCreatedAt();
+        DateFormat df = new SimpleDateFormat("dd-MM-yyyy");
+        return df.format(date);
+    }
 }
